@@ -185,6 +185,39 @@ class JLyricTitleSearcher(JLyricSearcher):
                 f"?kt={self.title}&ct=2&ka=&ca=2")
 
 
+class PetitLyricsSearcher(LyricsSearcher):
+    # Full match of title
+    @property
+    def search_url(self):
+        return (f"https://petitlyrics.com/search_lyrics?title={self.title}")
+
+    @property
+    def search_result_css_selector(self):
+        return '#lyrics_list tr'
+
+    @property
+    def lyrics_css_selector(self):
+        return '#lyrics'
+
+    @property
+    def search_result_artist_css_selector(self):
+        return "td:nth-of-type(2) a:nth-of-type(2)"
+
+    @property
+    def search_result_lyrics_link_css_selector(self):
+        return "td:nth-of-type(2) a:nth-of-type(1)"
+
+    @property
+    def lyrics_base_url(self):
+        return "https://petitlyrics.com/"
+
+    def postprocess(self, target):
+        target = self.remove_div(target)
+        target = self.replace_br(target)
+        target = self.remove_surrounding("canvas", target)
+        return target
+
+
 class MutipleLyricsSearcher:
     def __init__(self, searcher_classes, strict=True):
         self.searcher_classes = searcher_classes

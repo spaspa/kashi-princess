@@ -11,6 +11,7 @@ from searcher import (
     MutipleLyricsSearcher,
     JLyricSearcher,
     UtanetSearcher,
+    PetitLyricsSearcher,
     JLyricTitleSearcher
 )
 
@@ -127,6 +128,7 @@ def kashi_princess(root,
     searcher = MutipleLyricsSearcher([
         JLyricSearcher,
         UtanetSearcher,
+        PetitLyricsSearcher,
         JLyricTitleSearcher
     ], strict)
 
