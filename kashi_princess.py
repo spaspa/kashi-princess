@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
 from pathlib import Path
 from mutagen import MutagenError
 from mutagen.easymp4 import MP4
